@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean name="employeeRepository"
+		class="com.madushan.training.salesmanager.repository.HibernateEmployeeRepositoryImpl" />
+
+<!--
+
+	<bean name="employeeService"
+		class="com.madushan.training.salesmanager.service.EmployeeServiceImpl">
+		<property name="employeeRepository" ref="employeeRepository"></property>
+	</bean>
+</beans>
+ 
+-->
+
+ <!-- Convert to constructor injection -->
+ 
+	<bean name="employeeService"
+		class="com.madushan.training.salesmanager.service.EmployeeServiceImpl">
+		<!-- <property name="employeeRepository" ref="employeeRepository"></property> -->
+		
+		<constructor-arg index="0" ref="employeeRepository"></constructor-arg>
+	</bean>
+</beans>
+
+
+<!-- Auto wire constructor -->
+<!--
+	<bean name="employeeService"
+		class="com.madushan.training.salesmanager.service.EmployeeServiceImpl" autowire="constructor">
+		<!-- <property name="employeeRepository" ref="employeeRepository"></property> -->
+		
+		<!-- <constructor-arg index="0" ref="employeeRepository"></constructor-arg> -->
+<!--	</bean>
+</beans> 
+
+<!--
+<!-- autowire by Type -->
+
+<!--	<bean name="employeeService"
+		class="com.madushan.training.salesmanager.service.EmployeeServiceImpl" autowire="ByType">
+		<!-- <property name="employeeRepository" ref="employeeRepository"></property> -->
+		
+		<!-- <constructor-arg index="0" ref="employeeRepository"></constructor-arg> -->
+	<!-- </bean>
+</beans>
+
+<!-- autowire by Name -->
+
+<!--
+
+<bean name="employeeService"
+		class="com.madushan.training.salesmanager.service.EmployeeServiceImpl" autowire="ByName">
+		<!-- <property name="employeeRepository" ref="employeeRepository"></property> -->
+		
+		<!-- <constructor-arg index="0" ref="employeeRepository"></constructor-arg> -->
+<!--	</bean>
+</beans>
+
+
